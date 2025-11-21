@@ -2,13 +2,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# copy everything into the container
 COPY . .
 
-# go to Nop.Web project
 WORKDIR /src/Presentation/Nop.Web
-
-# restore & publish
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
@@ -18,9 +14,8 @@ WORKDIR /app
 
 COPY --from=build /app/publish ./
 
-# Kestrel listens on 5000 inside the container
-EXPOSE 5000
-ENV ASPNETCORE_URLS=http://+:5000
-ENV ASPNETCORE_ENVIRONMENT=Production
+# Heroku will set $PORT, we don't hard-code it here
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "Nop.Web.dll"]
+
