@@ -1,54 +1,26 @@
-# create the build instance 
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+# ========== BUILD STAGE ==========
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
 
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+# copy everything into the container
+COPY . .
 
-WORKDIR /src                                                                    
-COPY ./src ./
+# go to Nop.Web project
+WORKDIR /src/Presentation/Nop.Web
 
-# build solution   
-RUN dotnet build NopCommerce.sln --no-incremental -c Release
+# restore & publish
+RUN dotnet restore
+RUN dotnet publish -c Release -o /app/publish
 
-# publish project
-WORKDIR /src/Presentation/Nop.Web   
-RUN dotnet publish Nop.Web.csproj -c Release -o /app/published
-
-WORKDIR /app/published
-
-RUN mkdir logs bin
-
-RUN chmod 775 App_Data \
-              App_Data/DataProtectionKeys \
-              bin \
-              logs \
-              Plugins \
-              wwwroot/bundles \
-              wwwroot/db_backups \
-              wwwroot/files/exportimport \
-              wwwroot/icons \
-              wwwroot/images \
-              wwwroot/images/thumbs \
-              wwwroot/images/uploaded \
-			  wwwroot/sitemaps
-
-# create the runtime instance 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS runtime 
-
-# add globalization support
-RUN apk add --no-cache icu-libs icu-data-full
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
-
-# installs required packages
-RUN apk add tiff --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
-RUN apk add libgdiplus --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
-RUN apk add libc-dev tzdata gcompat --no-cache
-
+# ========== RUNTIME STAGE ==========
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 
-COPY --from=build /app/published .
+COPY --from=build /app/publish ./
 
-ENV ASPNETCORE_URLS=http://+:80
-EXPOSE 80
-                            
+# Kestrel listens on 5000 inside the container
+EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:5000
+ENV ASPNETCORE_ENVIRONMENT=Production
+
 ENTRYPOINT ["dotnet", "Nop.Web.dll"]
