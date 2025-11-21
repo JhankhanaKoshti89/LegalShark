@@ -6,7 +6,6 @@ COPY . .
 
 WORKDIR /src/Presentation/Nop.Web
 
-# Restore & publish in Release without app host
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 
@@ -14,7 +13,7 @@ RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-# Let ASP.NET bind to Heroku's injected PORT
+# Heroku uses $PORT; bind Kestrel to 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
 COPY --from=build /app/publish ./
