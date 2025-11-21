@@ -8,8 +8,7 @@
     <Description>This project contains a set of core services, business logic, validations or calculations related with the data, if needed. Some people call it Business Access Layer (BAL).</Description>
     <PackageLicenseUrl>https://www.nopcommerce.com/license</PackageLicenseUrl>
     <PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>
-    <TargetFramework>net9.0</TargetFramework>
+    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>    
   </PropertyGroup>
 
   <ItemGroup>

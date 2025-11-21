@@ -8,8 +8,7 @@
     <Description>The Nop.Core project contains a set of core classes for nopCommerce, such as caching, events, helpers, and business objects (for example, Order and Customer entities).</Description>
     <PackageLicenseUrl>https://www.nopcommerce.com/license</PackageLicenseUrl>
     <PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>
-    <TargetFramework>net9.0</TargetFramework>
+    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>    
   </PropertyGroup>
 
   <ItemGroup>
