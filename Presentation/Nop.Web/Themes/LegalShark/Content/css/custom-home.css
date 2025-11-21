@@ -1,0 +1,147 @@
+﻿:root {
+  --lf-bg: #0b0f19;
+  --lf-surface: #111827;
+  --lf-card: #0f172a;
+  --lf-border: #1f2937;
+  --lf-accent: #2563eb;
+  --lf-accent-2: #16a34a;
+  --lf-warn: #f59e0b;
+  --lf-danger: #ef4444;
+  --lf-text: #0f172a;
+  --lf-muted: #6b7280;
+  --lf-paper: #ffffff;
+  --lf-radius: 1rem;
+  --lf-primary: var(--lf-accent);
+}
+
+/* Respect dark scheme using Bootstrap CSS variables already on the page */
+[data-bs-theme="dark"] {
+  --bs-body-bg: var(--lf-bg);
+  --bs-body-color: #e5e7eb;
+  --bs-border-color: var(--lf-border);
+  --bs-card-bg: var(--lf-card);
+  --bs-card-border-color: var(--lf-border);
+  --bs-tertiary-bg: var(--lf-surface);
+}
+
+.legalshark-home .brand-badge {
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--lf-primary)
+}
+
+.legalshark-home .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  font-size: .85rem;
+  font-weight: 600;
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.legalshark-home .tag {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  padding: .2rem .6rem;
+  font-size: .75rem;
+}
+
+.legalshark-home .ls-sidebar {
+  width: 280px;
+  background-color: var(--bs-tertiary-bg);
+  border-right: 1px solid var(--bs-border-color);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  overflow-y: auto;
+}
+
+.legalshark-home .ls-content-wrap {
+  margin-left: 280px;
+}
+
+@media (max-width: 991.98px) {
+  .legalshark-home .ls-sidebar {
+    left: -100%;
+    transition: left .2s ease;
+  }
+
+    .legalshark-home .ls-sidebar.show {
+      left: 0;
+    }
+
+  .legalshark-home .ls-content-wrap {
+    margin-left: 0;
+  }
+}
+
+.legalshark-home .stat-card .icon {
+  font-size: 1.6rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--lf-radius);
+}
+
+.legalshark-home .table thead th {
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.legalshark-home .doc-row:hover {
+  background: rgba(37,99,235,.08);
+}
+
+.legalshark-home body.lf-theme-gradient,
+.legalshark-home { /* soft page gradient */
+  background: radial-gradient(1200px 600px at -10% -10%, rgba(var(--bs-primary-rgb),0.18), transparent 60%), linear-gradient(180deg, rgba(var(--bs-primary-rgb),0.08), transparent 300px), var(--bs-body-bg);
+}
+
+  /* Top brand header */
+  .legalshark-home .brand-header {
+    background: linear-gradient(135deg, rgba(var(--bs-primary-rgb),0.22), rgba(var(--bs-primary-rgb),0.10) 60%, transparent 100%), var(--bs-body-bg);
+    border-bottom: 1px solid color-mix(in srgb, var(--lf-primary) 25%, var(--bs-border-color));
+    backdrop-filter: saturate(120%) blur(6px);
+  }
+
+  /* Hover accents */
+  .legalshark-home .ls-sidebar a:hover {
+    color: var(--lf-primary) !important;
+  }
+
+  .legalshark-home .bg-primary-subtle {
+    background-color: rgba(var(--bs-primary-rgb), .12) !important;
+  }
+
+  .legalshark-home .text-bg-primary {
+    background-color: rgba(var(--bs-primary-rgb), .85) !important;
+  }
+
+  /* Shape & density helpers */
+  .legalshark-home .rounded-dna {
+    border-radius: var(--lf-radius) !important;
+  }
+
+  .legalshark-home .btn {
+    border-radius: 999px;
+  }
+
+.btn-square .btn {
+  border-radius: .5rem;
+}
+
+.btn-pill .btn {
+  border-radius: 999px;
+}
+
+.dense-y .btn, .dense-y .nav-link, .dense-y .form-control, .dense-y .input-group-text, .dense-y .list-group-item, .dense-y .dropdown-item {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+}

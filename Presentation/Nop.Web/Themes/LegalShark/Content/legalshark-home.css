@@ -1,0 +1,51 @@
+﻿/* ===== LegalShark × nopCommerce: home-page hardening ===== */
+
+/* 1) Make the whole page use our background instead of theme's white body */
+html.body-html-home-page .lf-theme-gradient, /* safety hook if you add class to <body> */
+body.html-home-page.lf-theme-gradient, /* preferred */
+body.html-home-page { /* fallback – still beats "body { ... }" */
+  background: radial-gradient(1200px 600px at -10% -10%, rgba(var(--bs-primary-rgb, 37,99,235),0.18), transparent 60%), linear-gradient(180deg, rgba(var(--bs-primary-rgb, 37,99,235),0.08), transparent 300px), var(--bs-body-bg, #fff);
+}
+
+  /* 2) Neutralize the theme’s narrow page frame on this page */
+  body.html-home-page .master-wrapper-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  /* 3) Default theme centers content; we want normal left alignment */
+  body.html-home-page .page {
+    text-align: left !important;
+  }
+
+  /* 4) Trim large default vertical gaps that push our layout down */
+  body.html-home-page .center-1 {
+    margin: 0 !important;
+  }
+
+  /* 5) Sidebar/content layout guardrails (use your scoped classes) */
+  body.html-home-page .legalshark-home .ls-sidebar {
+    left: 0; /* ensure visible on desktop; your media query already slides it on mobile */
+  }
+
+@media (max-width: 991.98px) {
+  body.html-home-page .legalshark-home .ls-content-wrap {
+    margin-left: 0 !important;
+  }
+
+  body.html-home-page .legalshark-home .ls-sidebar {
+    left: -100%;
+  }
+}
+
+/* 6) Keep tables, buttons, etc. consistent inside our block (beats theme generics) */
+body.html-home-page .legalshark-home .table thead th {
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: .85rem;
+}
+
+body.html-home-page .legalshark-home .btn {
+  border-radius: 999px;
+}

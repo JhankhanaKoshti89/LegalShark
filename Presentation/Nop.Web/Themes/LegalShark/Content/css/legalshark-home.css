@@ -1,0 +1,77 @@
+﻿/* ============ Two-column layout ============ */
+.legalshark-home .ls-shell{
+  display:grid;
+  grid-template-columns: 240px minmax(0,1fr);
+  gap:16px;
+}
+
+/* Left menu block looks native */
+.legalshark-home .ls-leftnav .title{
+  background:#f6f6f6; border:1px solid #ddd;
+}
+.legalshark-home .ls-leftnav .listbox{
+  border:1px solid #ddd; border-top:none;
+}
+.legalshark-home .ls-leftmenu li{
+  border-bottom:1px solid #eee;
+}
+.legalshark-home .ls-leftmenu li:last-child{ border-bottom:none; }
+.legalshark-home .ls-leftmenu a{
+  display:block; padding:10px 12px; color:#444; text-decoration:none;
+}
+.legalshark-home .ls-leftmenu a:hover{
+  background:#f6f6f6;
+}
+.legalshark-home .ls-leftmenu i{ margin-right:8px; }
+
+/* Keep right content flowing nicely */
+.legalshark-home .ls-main .page-title{ margin-top:0; }
+
+/* Stats, tables, lists remain as previously styled */
+.legalshark-home .ls-grid{
+  display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:16px; margin:0 0 20px;
+}
+.legalshark-home .ls-stat .title{ background:#f6f6f6; border:1px solid #ddd; }
+.legalshark-home .ls-stat .listbox{ border:1px solid #ddd; border-top:none; }
+.legalshark-home .ls-stat-value{ padding:15px; font-size:22px; color:#444; }
+
+/* Two-column section inside right content */
+.legalshark-home .ls-cols{
+  display:grid; grid-template-columns: 1.3fr .7fr; gap:16px; margin-bottom:20px;
+}
+.legalshark-home .ls-cols .block .title{ background:#f6f6f6; border:1px solid #ddd; }
+.legalshark-home .ls-cols .block .listbox{ border:1px solid #ddd; border-top:none; }
+
+/* Table look */
+.legalshark-home .table-wrapper{ overflow-x:auto; }
+.legalshark-home table.cart{ width:100%; border-collapse:separate; border-spacing:0; }
+.legalshark-home table.cart th,
+.legalshark-home table.cart td{ border:1px solid #ddd; padding:10px; background:#fff; }
+.legalshark-home table.cart thead th{ background:#f6f6f6; font-weight:normal; color:#444; }
+.legalshark-home table.cart .align-right{ text-align:right; }
+
+/* Small badges */
+.legalshark-home .ls-badge{ display:inline-block; padding:2px 6px; font-size:12px; border:1px solid #ddd; background:#eee; color:#444; }
+.legalshark-home .ls-badge.ls-ok{ background:#eaf6ea; }
+.legalshark-home .ls-badge.ls-info{ background:#eaf2f9; }
+.legalshark-home .ls-badge.ls-warn{ background:#fff6e5; }
+
+/* Client list + shortcuts */
+.legalshark-home .ls-client-list li{ display:flex; align-items:center; justify-content:space-between; }
+.legalshark-home .ls-avatar{ display:inline-block; width:24px; height:24px; line-height:24px; text-align:center; background:#eee; color:#444; border:1px solid #ddd; margin-right:8px; }
+.legalshark-home .ls-shortcuts li{ display:inline-block; margin:0 10px 8px 0; }
+.legalshark-home .ls-shortcuts a{ display:inline-block; border:1px solid #ddd; background:#fff; padding:8px 12px; color:#444; text-decoration:none; }
+.legalshark-home .ls-shortcuts a:hover{ background:#f6f6f6; }
+.legalshark-home .ls-shortcuts i{ margin-right:6px; }
+
+/* Responsive: stack nav on top on small screens */
+@media (max-width: 1024px){
+  .legalshark-home .ls-shell{ grid-template-columns: 1fr; }
+  .legalshark-home .ls-leftnav{ order:0; }
+  .legalshark-home .ls-main{ order:1; }
+  .legalshark-home .ls-grid{ grid-template-columns: repeat(2, 1fr); }
+  .legalshark-home .ls-cols{ grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .legalshark-home .ls-grid{ grid-template-columns: 1fr; }
+}

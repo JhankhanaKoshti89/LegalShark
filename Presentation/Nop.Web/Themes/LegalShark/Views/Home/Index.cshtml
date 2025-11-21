@@ -1,0 +1,167 @@
+﻿@using Nop.Services.Localization
+@using Nop.Core
+@using Nop.Web.Framework.Infrastructure
+@inject ILocalizationService localizationService
+@inject IStoreContext storeContext
+@{
+    Layout = "_ColumnsOne";
+    var store = await storeContext.GetCurrentStoreAsync();
+    var homepageTitle = await localizationService.GetLocalizedAsync(store, s => s.HomepageTitle);
+    if (!string.IsNullOrEmpty(homepageTitle))
+    {
+        NopHtml.AddTitleParts(homepageTitle);
+    }
+    var homepageDescription = await localizationService.GetLocalizedAsync(store, s => s.HomepageDescription);
+    if (!string.IsNullOrEmpty(homepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(homepageDescription);
+    }
+    NopHtml.AppendPageCssClassParts("html-home-page lf-theme-gradient");
+    NopHtml.AddCssFileParts("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css", excludeFromBundle: true);
+    NopHtml.AddCssFileParts("~/Themes/LegalShark/Content/css/legalshark-home.css", excludeFromBundle: true);
+}
+<div class="page home-page legalshark-home">
+    <div class="page-body">
+<div class="legalshark-home ls-home">
+  <div class="ls-shell">
+
+    <!-- LEFT MENU (fixed column) -->
+    <aside class="ls-leftnav block">
+      <div class="title"><strong>Menu</strong></div>
+      <div class="listbox">
+        <ul class="list ls-leftmenu">
+          <li><a href="/"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+          <li><a href="/clients"><i class="bi bi-people"></i> Clients</a></li>
+          <li><a href="/tickets"><i class="bi bi-folder2-open"></i> Tickets</a></li>
+          <li><a href="/documents"><i class="bi bi-file-earmark-text"></i> Documents</a></li>
+          <li><a href="/hearings"><i class="bi bi-calendar-event"></i> Hearings</a></li>
+          <li><a href="/trust-ledger"><i class="bi bi-piggy-bank"></i> Trust Ledger</a></li>
+          <li><a href="/customer-ledger"><i class="bi bi-wallet2"></i> Customer Ledger</a></li>
+          <li><a href="/settings"><i class="bi bi-gear"></i> Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <div class="ls-main">
+
+      <!-- Page title (keeps DefaultClean styling) -->
+      <div class="page-title">
+        <h1>LegalShark – Smart, Transparent &amp; Fast Legal Help</h1>
+      </div>
+
+      <!-- HERO as a native block -->
+      <div class="block ls-hero-block">
+        <div class="title"><strong>Start in minutes</strong></div>
+        <div class="listbox">
+          <div class="topic-block">
+            <div class="topic-block-body">
+              <p>Upload your ticket &amp; license securely. We handle filings, representation, and updates.</p>
+              <div class="buttons">
+                <a href="/start-your-case" class="button-1">Start Your Case</a>
+                <a href="/pricing" class="button-2">View Pricing</a>
+                <a href="/contactus" class="button-2">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS (4-up) -->
+      <div class="ls-grid">
+        <div class="block ls-stat">
+          <div class="title"><strong>Open matters</strong></div>
+          <div class="listbox"><div class="ls-stat-value">128</div></div>
+        </div>
+        <div class="block ls-stat">
+          <div class="title"><strong>Documents today</strong></div>
+          <div class="listbox"><div class="ls-stat-value">42</div></div>
+        </div>
+        <div class="block ls-stat">
+          <div class="title"><strong>Upcoming hearings</strong></div>
+          <div class="listbox"><div class="ls-stat-value">9</div></div>
+        </div>
+        <div class="block ls-stat">
+          <div class="title"><strong>A/R balance</strong></div>
+          <div class="listbox"><div class="ls-stat-value">$12,480</div></div>
+        </div>
+      </div>
+
+      <!-- TWO COLUMNS -->
+      <div class="ls-cols">
+        <div class="col">
+          <div class="block">
+            <div class="title">
+              <strong>Recent tickets</strong>
+              <a href="/tickets" class="link-r">View all</a>
+            </div>
+            <div class="listbox">
+              <div class="table-wrapper">
+                <table class="cart">
+                  <thead>
+                    <tr>
+                      <th>Ticket #</th><th>Client</th><th>Court</th><th>Status</th>
+                      <th class="align-right">Updated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>TR-10492</td><td>Alex Morgan</td><td>Toronto</td>
+                      <td><span class="ls-badge ls-warn">Disclosure</span></td>
+                      <td class="align-right">Today</td>
+                    </tr>
+                    <tr>
+                      <td>TR-10488</td><td>Sara K.</td><td>Brampton</td>
+                      <td><span class="ls-badge ls-info">Pre-trial</span></td>
+                      <td class="align-right">Yesterday</td>
+                    </tr>
+                    <tr>
+                      <td>TR-10477</td><td>J. Singh</td><td>Ottawa</td>
+                      <td><span class="ls-badge ls-ok">Paid</span></td>
+                      <td class="align-right">2d</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="block">
+            <div class="title">
+              <strong>New clients</strong>
+              <a href="/clients" class="link-r">View all</a>
+            </div>
+            <div class="listbox">
+              <ul class="list ls-client-list">
+                <li><span class="ls-avatar">AM</span> Alex Morgan <a class="link-r" href="/addticket">Add ticket</a></li>
+                <li><span class="ls-avatar">SK</span> Sara Khan <a class="link-r" href="/addticket">Add ticket</a></li>
+                <li><span class="ls-avatar">JS</span> Jaspreet Singh <a class="link-r" href="/addticket">Add ticket</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHORTCUTS -->
+      <div class="block">
+        <div class="title"><strong>Shortcuts</strong></div>
+        <div class="listbox">
+          <ul class="list ls-shortcuts">
+            <li><a href="/addclient"><i class="bi bi-person-plus"></i> New Client</a></li>
+            <li><a href="/addticket"><i class="bi bi-plus-circle"></i> Add Ticket</a></li>
+            <li><a href="/documents"><i class="bi bi-upload"></i> Upload Document</a></li>
+            <li><a href="/hearings"><i class="bi bi-plus-lg"></i> Schedule Hearing</a></li>
+            <li><a href="/trust-ledger"><i class="bi bi-piggy-bank"></i> Trust Entry</a></li>
+            <li><a href="/customer-ledger"><i class="bi bi-receipt"></i> Invoice/Payment</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /ls-main -->
+  </div><!-- /ls-shell -->
+</div>
+
+</div>
+</div>
